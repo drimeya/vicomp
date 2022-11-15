@@ -1,0 +1,152 @@
+.footer {
+    background: $blue;
+    padding: 80px 0 70px 0;
+    &__top {
+        padding-bottom: 59px;
+        &__form {
+            padding: 45px 175px 45px 50px;
+            border: 1px solid #329BC9;
+            border-radius: 20px;
+            &__inputs {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                margin-top: 26px;
+                input[type=text] {
+                    width: 49%;
+                }
+            }
+            input[type=checkbox] {
+                display: none;
+                + label {
+                    position: relative;
+                    font-size: 15px;
+                    line-height: 135%;
+                    color: $light-blue;
+                    margin-top: 19px;
+                    padding-left: 45px;
+                    a {
+                        color: $light-blue;
+                        text-decoration: underline;
+                    }
+                    &:before {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 23px;
+                        height: 23px;
+                        padding: 1px 4px;
+                        background: #fff;
+                        border-radius: 5px;
+                    }
+                }
+                &:checked {
+                    + label::before {
+                        font-family: Fontello;
+                        content: '\e805';
+                        color: #272727;
+                    }
+                }
+            }
+        }
+        &__right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        &__contacts {
+            padding: 21px  35px;
+            border: 1px solid #329BC9;
+            border-radius: 20px;
+            color: #fff;
+            margin-bottom: 17px;
+            ul {
+                margin-bottom: 0;
+                li {
+                    max-width: 160px;
+                    margin: 0 auto; 
+                    a {
+                        text-decoration: none;
+                    }
+                }
+            }
+            a {
+                display: block;
+                text-align: center;
+                font-weight: 600;
+                line-height: 20px;
+                color: #FFFFFF;
+                text-decoration: underline;
+                &:hover {
+                    color: $light-blue;
+                }
+            }
+            p {
+                text-align: center;
+                margin:0;
+            }
+            &:nth-child(2) {
+                padding: 35px;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    &__bottom {
+        color: #fff;
+        padding-top: 60px;
+        border-top: 1px solid #329BC9;
+        &__img {
+            margin-right: 10px;
+            padding: 22px 33px;
+            height: 121px;
+            border-radius: 20px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        &__menu {
+            ul {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 0;
+                padding-left: 0;
+                li {
+                    list-style: none;
+                    margin-bottom: 15px;
+                    margin-left: -15px;
+                    a {
+                        color: #fff;
+                        font-weight: 600;
+                        &:hover {
+                            color: $light-blue;
+                        }
+                    }
+
+                }
+            }
+        }
+        &__copyright {
+            text-align: end;
+            font-size: 15px;
+            line-height: 135%;
+            color: $light-blue;
+            a {
+                text-decoration: underline;
+                color: $light-blue;
+            }
+
+        }
+    }
+}

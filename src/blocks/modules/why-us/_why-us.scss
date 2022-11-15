@@ -1,0 +1,58 @@
+.why-us {
+    background: $blue;
+    color: #fff;
+    padding: 95px 0 90px 0;
+    &__content {
+        margin-right: 20px;
+    }
+    p {
+        margin-bottom: 27px;
+    }
+    &__adv {
+        .big {
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 47px;
+            margin-bottom: 4px;
+        }
+        .text {
+            font-weight: 600;
+        }
+    }
+    .button {
+        margin-top: 86px;
+    }
+    &__advantages {
+        margin-left: 30px;
+        &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 30px);
+            margin-bottom: 30px;
+            border: 1px solid #329BC9;
+            border-radius: 20px;
+            padding: 27px 40px 15px 40px;
+            &__icon {
+                height: 55px;
+                margin-bottom: 10px;
+                img {
+                    height: 100%;
+                }
+            }
+            &__title {
+                text-align: center;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 23px;
+                margin-bottom: 10px;
+            }
+            &__p {
+                font-size: 15px;
+                line-height: 135%;
+                text-align: center;
+            }
+        }
+    }
+}

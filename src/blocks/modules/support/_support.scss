@@ -1,0 +1,35 @@
+.support {
+    padding: 95px 0;
+    &__content {
+        margin-right: 50px;
+        &__list {
+            padding-left: 55px;
+            margin-bottom: 0;
+            li {
+                position: relative;
+                list-style-type: none;
+                font-weight: 600;
+                margin-bottom: 23px;
+                &:after {
+                    font-family: Fontello;
+                    content: '\e804';
+                    display: block;
+                    position: absolute;
+                    color: $blue;
+                    font-size: 32px;
+                    line-height: 100%;
+                    top: 7px;
+                    left: -55px;
+                }
+            }
+        }
+    }
+    &__image {
+        margin-left: 40px;
+        border-radius: 20px;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+}
