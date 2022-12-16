@@ -20,8 +20,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-$tdl_options = eva_global_var();
 ?>
 
 
@@ -44,10 +42,6 @@ $tdl_options = eva_global_var();
 </p>
 
 <ul class="shop-ordering">
-    <?php if ( (isset($tdl_options['tdl_shop_pagination'])) && ($tdl_options['tdl_shop_pagination'] == "classic") ) : ?>
-        <?php do_action( 'eva_per_page_loop' );?>      
-    <?php endif; ?>
-
     <li id="shop-catalog-ordering"><?php do_action( 'woocommerce_before_shop_loop_catalog_ordering' ); ?></li>
 </ul>
 

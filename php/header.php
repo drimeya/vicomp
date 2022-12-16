@@ -12,7 +12,13 @@
     <?php wp_head(); ?>
 </head>
 
-<body>
+<body class="
+<?php if (is_front_page() || is_home()){ ?> 
+    front-page
+<? } else { ?>
+    catalog-page
+<? } ?>
+">
     <header class="header">
     <div class="bg_blue bg_mobile_white">
         <div class="container">

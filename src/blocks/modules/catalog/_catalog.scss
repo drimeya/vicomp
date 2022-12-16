@@ -81,7 +81,7 @@
         &__list {
             padding-top: 20px;
         }
-        &__item {
+        &__item:not(.category-page__item) {
             padding: 16px;
             margin-bottom: 15px;
             min-height: 221px;
@@ -89,7 +89,7 @@
                 height: 98px;
                 width: 98px;
             }
-            &_first {
+            .catalog__item_first {
                 padding: 32px 24px 24px 24px;
                 margin-bottom: 15px;
                 img {
@@ -109,13 +109,13 @@
                     }
                 }
             }
-            &__title {
+            .catalog__item__title {
                 margin-top: 11px;
                 font-size: 14px;
                 line-height: 16px;
                 padding-right: 0;
             }
-            &__icon {
+            .catalog__item__icon {
                 right: unset;
                 left: 17px;
                 bottom: 17px;

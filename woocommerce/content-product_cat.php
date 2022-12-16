@@ -22,23 +22,57 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
 $image = wp_get_attachment_url( $thumbnail_id );
+$sub_count = 4;
 ?>
-<li class="category_grid_item column">
-	<div class="category_grid_box">
-		<a class="category_item" href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>">
-			<div class="category_overlay"></div>
-			<span class="category_name">
-				<span><?php echo sprintf (_n( '%d item', '%d items', $category->count, 'eva' ), $category->count ); ?></span>
-				<p class="h3"><?php echo esc_html($category->name); ?></p>
-			</span>                                            
-			<?php 
-			if ( $image ) { ?>
-			<img class="category_item_bkg" src="<?php echo esc_url($image); ?>" alt="<?php echo esc_html($category->name); ?>" />
-				<?php  } else {  ?>
-				<div class="category_item_bkg_blank"></div>
-			<?php	}
-			?>                                          
+<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+	<div class="categories__item">
+		<?if ( $image ) :?>
+			<div class="categories__item__img">
+				<img src="<?=$image;?>" alt="<?=$category->name;?>">
+			</div>
+		<?endif;?>
+		<a class="categories__item__title" href="<?=get_term_link( $category->slug, 'product_cat' ); ?>">
+			<?=$category->name;?> (<?=$category->count;?>)
 		</a>
-	</div>                                           
-</li>
-
+		<?php $args = array(
+			 'taxonomy' => 'product_cat', 
+			 'parent' => $category->term_id,
+			); 
+			$term_childs = get_categories($args); ?>
+		<?if (!empty($term_childs)) :?>
+			<?php
+			$over = false;
+			foreach ( $term_childs as $term ) { ?>
+				<?if ($term == $term_childs[$sub_count]):?>
+					<?php $over = true?>
+					<div class='categories__item__hidden'>
+				<?endif?>
+				 <a href="<?=get_term_link($term->slug, 'product_cat')?>" class="categories__item__link"><?=$term->name?></a>
+			<? } ?>
+			<?if ($over): ?>
+				</div>
+			<?endif?>
+			<?if (count($term_childs) > $sub_count) :?>
+				<div class="show_more">Еще <?=(count($term_childs) - $sub_count)?></div>
+			<?endif?>
+		<?else:?>
+			<?php
+			$products = get_products_from_category_by_ID($category->term_id);
+			$over = false;
+			foreach ($products as $id) {
+				$product = wc_get_product($id); ?>
+				<?if ($id == $products[$sub_count]):?>
+					<?php $over = true?>
+					<div class='categories__item__hidden'>
+				<?endif?>
+				<a href="<?=get_permalink($product->id); ?>" class="categories__item__link"><?=$product->name?></a>
+			<? } ?>
+			<?if ($over): ?>
+				</div>
+			<?endif?>
+			<?if (count($products) > $sub_count) :?>
+				<div class="show_more">Еще <?=(count($products) - $sub_count)?></div>
+			<?endif?>
+		<?endif?>
+	</div>
+</div>

@@ -8,6 +8,7 @@ register_nav_menus(array(
 ));
  
 function set_styles() {
+	wp_enqueue_style('fonts', get_stylesheet_directory_uri() . '/css/fonts.css');
     wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/css/main.css');
 }
  
@@ -50,4 +51,22 @@ class woocommerce_menu_with_thumbnails_walker extends Walker_Nav_Menu {
 	function end_el( &$output, $data_object, $depth=1, $args = null ) {
 		$output .= '</li>';
 	}
+}
+function get_products_from_category_by_ID( $category ) {
+
+    $products = new WP_Query( array(
+        'post_type'   => 'product',
+        'post_status' => 'publish',
+        'fields'      => 'ids',
+        'tax_query'   => array(
+            'relation' => 'AND',
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $category,
+            )
+        ),
+
+    ) );
+    return $products->posts;
 }

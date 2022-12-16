@@ -96,6 +96,33 @@ document.addEventListener("DOMContentLoaded", function() {
         //2. Получить элемент, к которому необходимо добавить маску
         jQuery(".tel").mask("8(999) 999-9999");
     });
+
+    const categoriesItem = document.querySelectorAll(".categories__item");
+    if (categoriesItem) {
+        categoriesItem.forEach(item => {
+            const button = item.querySelector(".show_more");
+
+            if (button) {
+                let open = false,
+                    more_text = button.textContent;
+
+                const hidden = item.querySelector(".categories__item__hidden");
+
+                button.addEventListener("click", ()=>{
+                    hidden.classList.toggle("active");
+                    if (!open) {
+                        button.textContent = "Скрыть";
+                        open = true;
+                    } else {
+                        button.textContent = more_text;
+                        open = false;
+                    }
+                    
+                });
+            }
+        });
+        
+    }
 });
 
 
