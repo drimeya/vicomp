@@ -4,12 +4,6 @@
             
             <div class="header__top">
                 <i class="icon-hamb mobile-none hamburger"></i>
-                <a href="/" class="header__top__logo mobile-none">
-                    <picture>
-                        <source srcset="/img/logo/header.webp" type="image/webp">
-                        <img loading="lazy" src="/img/logo/header.jpg" alt="VECOMP">
-                    </picture>
-                </a>
                 <div class="header__top__city">
                     <i class="icon-location"></i>
                     Москва
@@ -28,6 +22,12 @@
                         <input type="text" name="search" placeholder="Поиск">
                         <button type="submit"></button>
                     </form>
+                    <a href="/" class="header__top__logo mobile-none">
+                        <picture>
+                            <source srcset="/img/logo/header.webp" type="image/webp">
+                            <img loading="lazy" src="/img/logo/header.jpg" alt="VECOMP">
+                        </picture>
+                    </a>
                 </div>
                 <div class="header__top__tel">
                     <a href="tel:+74994290803">
@@ -49,7 +49,20 @@
                 </a>
                 <nav class="header__main__menu">
                     <ul>
-                        <li><a href="#">Каталог</a></li>
+                        <li class="menu-item-has-children"><a href="#">Каталог</a>
+                            <ul class="">
+                                <li><img src="/img/catalog/1.jpg" alt=""><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><img src="/img/catalog/1.jpg" alt=""><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><img src="/img/catalog/1.jpg" alt=""><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><a href="#">Контакты</a></li>
+                                <li><img src="/img/catalog/1.jpg" alt=""><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><a href="#">Контакты</a></li>
+                                <li><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><img src="/img/catalog/1.jpg" alt=""><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Инфракрасные (NIR) анализаторы</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">Область применения</a></li>
                         <li><a href="#">Сервисный центр</a></li>
                         <li><a href="#">Доставка</a></li>
@@ -63,8 +76,14 @@
                             <button type="submit"></button>
                         </form>
                     </div>
+
                 </nav>
-                
+                <div class="header__main__tel">
+                    <a href="tel:+74994290803">
+                        <i class="icon-phone"></i>
+                        <span>+7 (499) 429-0803</span>
+                    </a>
+                </div>
                 <a class="button button_yellow button_margin-left">
                     Получить консультацию
                     <i class="icon-up"></i>

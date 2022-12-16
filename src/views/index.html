@@ -2,7 +2,7 @@
 <html lang="ru">
 @@include('../blocks/modules/head/head.html')
 
-<body>
+<body class="front-page">
     @@include('../blocks/modules/header/header.html')
     <main>
         <div class="container">
@@ -18,9 +18,14 @@
             @@include('../blocks/modules/faq/faq.html')
         </div>
     </main>
-    @@include('../blocks/modules/footer/footer.html')S
-    <script src="js/vendor.js"></script>
-    <script src="js/main.js"></script>
+    @@include('../blocks/modules/footer/footer.html')
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+        <script src="js/main.js"></script>
 </body>
 
 </html>

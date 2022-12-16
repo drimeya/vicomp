@@ -49,3 +49,19 @@
         }
     }
 }
+@media (max-width: 992px) {
+    .news {
+        position: relative;
+        padding: 29px 0 82px 0;
+        &__link {
+            position: absolute;
+            width: 205px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            .button {
+                padding: 17px 30px;
+            }
+        }
+    }
+}

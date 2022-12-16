@@ -1,0 +1,9 @@
+.breadcrumbs {
+    margin: 25px 0 21px;
+    a {
+        color: #969696;
+        &.current {
+            color: #000;
+        }
+    }
+}

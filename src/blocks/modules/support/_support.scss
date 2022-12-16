@@ -33,3 +33,33 @@
         }
     }
 }
+@media (max-width: 992px) {
+    .support {
+        padding: 37px 0 35px 0;
+        &__content {
+            display: flex;
+            flex-direction: column;
+            margin-right: 0;
+            &__list {
+                li {
+                    margin-bottom: 17px;
+                }
+            }
+            &__button {
+                justify-self: center;
+                margin: 10px auto 0 auto;
+            }
+        }
+        &__image {
+            margin-left: 0;
+            margin-top: 0;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .support {
+        &__image {
+            margin-top: 35px;
+        }
+    }
+}

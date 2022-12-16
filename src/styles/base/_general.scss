@@ -1,9 +1,22 @@
 body {
+    position: relative;
     font-family: Raleway, sans-serif;
     font-weight: 400;
     font-size: 17px;
     line-height: 135%;
-    background: #F5F5F5;
+    height: 100%;
+    color: #272727;
+}
+body.front-page {
+    background: #F4F0ED;
+}
+body.catalog-page {
+    background:#F9F9F9;
+}
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
 }
 a {
     text-decoration: none;
@@ -15,6 +28,10 @@ input[type=tel]{
     padding: 15px 27px;
     color: #969696;
     border: none;
+    transition: 0.2s border;
+}
+input.validate {
+    border: 2px solid #ff6363;
 }
 .icon-up {
     &:before {
@@ -28,5 +45,29 @@ input[type=tel]{
 @media (min-width: 992px) {
     .mobile-none {
         display: none;
+    }
+}
+@media (max-width: 992px) {
+    .static {
+        position: static;
+    }
+}
+.slick-dots {
+    display: flex;
+    padding-left: 0;
+    margin: 20px auto 0 auto;
+    li {
+        list-style: none;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        margin: 0 5px;
+        background: #fff;
+        button {
+            display: none;
+        }
+    }
+    li.slick-active {
+        background: $blue;
     }
 }
