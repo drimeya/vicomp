@@ -11,177 +11,40 @@
  * the readme will list any important changes.
  *
  * @see https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @package WooCommerce\Templates
  * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
 
-global $woocommerce_loop;
-$tdl_options = eva_global_var();
+get_header( 'shop' ); ?>
 
-$page_id = wc_get_page_id('shop');
+<?php if ( !is_shop() ) : ?>
+    <?php
+    /**
+    * woocommerce_before_shop_loop hook
+    *
+    * @hooked woocommerce_result_count - 20
+    * @hooked woocommerce_catalog_ordering - 30
+    */
+    do_action( 'woocommerce_before_shop_loop' );
+    ?>
 
-get_header( 'shop' ); 
+    <?php woocommerce_product_loop_start(); ?>
+        <?php woocommerce_product_subcategories(); ?>
+            <?php while ( have_posts() ) : the_post(); ?>
+        <?php wc_get_template_part( 'content', 'product' ); ?>
+        <?php endwhile; // end of the loop. ?>
+    <?php woocommerce_product_loop_end(); ?>
 
-//woocommerce_before_main_content
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
-remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-
-//woocommerce_before_shop_loop
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-
-add_action( 'woocommerce_before_shop_loop_result_count', 'woocommerce_result_count', 20 );
-add_action( 'woocommerce_before_shop_loop_catalog_ordering', 'woocommerce_catalog_ordering', 30 );
-
-// Sidebar Settings
-$shop_has_sidebar = false;
-$shop_sidebar = 'full-width';
-
-
-if ( 
-    is_active_sidebar( 'widgets-product-listing' )
-     && (isset($tdl_options['tdl_sidebar_style']))
-     && ($tdl_options['tdl_sidebar_style'] == "1") 
-)
-{
-    $shop_has_sidebar = true;
-    $shop_sidebar = 'shop-has-sidebar';
-} else {
-    $shop_has_sidebar = false;
-    $shop_sidebar = 'full-width';    
-}
-
-if (isset($_GET["shop_sidebar"])) $shop_sidebar = $_GET["shop_sidebar"];
-
-?>
-
-
-
-<div id="primary" class="content-area shop-page<?php echo esc_attr($shop_has_sidebar) ? ' '. esc_attr($shop_sidebar):'';?>">
-
-    <?php get_template_part( 'includes/headers/shop', 'header' ); ?>
-
-        <!-- Shop Content Area -->  
-
-
-		
-	
-        <div id="content" class="site-content" role="main">
-            <div class="row">
-                <?php if ( $shop_has_sidebar && $shop_sidebar != "full-width" ) : ?>
-                    <div class="xlarge-2 large-3 columns show-for-large-up sidebar-pos">
-                        <div class="shop_sidebar wpb_widgetised_column">                   
-                            <?php if ( is_active_sidebar( 'widgets-product-listing' ) ) { ?>
-										<script type="text/javascript">
-										function shineLinks(id){
-											try{
-												var el=document.getElementById(id).getElementsByTagName('a');
-												var url=document.location.href;
-												for(var i=0;i<el.length; i++){
-													if (url==el[i].href){
-														el[i].className += 'curr';
-													};
-												};
-											}catch(e){}
-										};
-									</script>
-                                <div id="secondary" class="widget-area" role="complementary">
-                                    <?php dynamic_sidebar( 'widgets-product-listing' ); ?>
-                                </div>
-							<script type="text/javascript">shineLinks('secondary');</script>
-                            <?php } ?>
-                        </div>
-                    </div>
-                           
-                    <div id="content-position" class="xlarge-10 large-9 columns content-pos">
-                <?php else : ?>
-
-                <div class="large-12 columns">
-                            
-                <?php endif; ?>  
-                
-                    <!-- Shop Order Bar -->
-
-                    <div class="top_bar_shop">
-
-                        <div class="catalog-ordering">
-                            <?php if ( is_active_sidebar( 'widgets-product-listing' ) ) : ?>
-                                <div class="shop-filter"><span><?php echo esc_html__( 'Filter', 'eva' ); ?></span></div>
-                            <?php endif; ?>
-                            <?php if ( have_posts() ) : ?>
-                                <?php do_action( 'woocommerce_before_shop_loop_result_count' ); ?>
-                            <?php endif; ?>
-                        </div> <!--catalog-ordering-->
-                        <div class="clearfix"></div>
-                    </div><!-- .top_bar_shop-->     
-                    
-                    <?php if ( woocommerce_product_loop() ) { ?> 
-                        <?php
-                            /**
-                             * woocommerce_before_shop_loop hook.
-                             *
-                             * @hooked woocommerce_result_count - 20
-                             * @hooked woocommerce_catalog_ordering - 30
-                             */
-                            do_action( 'woocommerce_before_shop_loop' );
-                        ?>
-                        <div class="active_filters_ontop"><?php the_widget( 'WC_Widget_Layered_Nav_Filters', array(), array() ); ?></div>    
-                                            
-                        <?php 
-                                woocommerce_product_loop_start();
-
-                                if ( wc_get_loop_prop( 'total' ) ) {
-                                    while ( have_posts() ) {
-                                        the_post();
-
-                                        /**
-                                         * Hook: woocommerce_shop_loop.
-                                         *
-                                         * @hooked WC_Structured_Data::generate_product_data() - 10
-                                         */
-                                        do_action( 'woocommerce_shop_loop' );
-
-                                        wc_get_template_part( 'content', 'product' );
-                                    }
-                                }
-
-                                woocommerce_product_loop_end();
-                             ?>                        
-
-                        <?php
-                            /**
-                             * woocommerce_after_shop_loop hook.
-                             *
-                             * @hooked woocommerce_pagination - 10
-                             */
-                            do_action( 'woocommerce_after_shop_loop' );
-                        ?>
-                    <?php } else { ?>
-                
-                        <?php wc_get_template( 'loop/no-products-found.php' ); ?>
-            
-                    <?php } ?>
-
-
-
-                </div><!-- .columns -->            
-            </div><!-- .row -->
-			<noindex>
-			<!-- Перенесенное описание сверху -->
-			</noindex>	
-			<div class="row">
-				<?php if ( esc_attr( $subtitle ) ) : ?>
-                    <div class="term-description"><p><?php echo esc_attr( $subtitle ); ?></p></div>
-                  <?php else: ?>
-                    <?php do_action( 'woocommerce_archive_description' ); ?>
-                  <?php endif; ?>
-			</div>
-			<!-- Перенесенное описание сверху -->
-        </div><!-- #content --> 
-			
-
-</div><!-- #primary -->
+    <?php
+    /**
+    * woocommerce_after_shop_loop hook
+    *
+    * @hooked woocommerce_pagination - 10
+    */
+    do_action( 'woocommerce_after_shop_loop' );
+    ?>
+<?php endif; ?>
 
 <?php get_footer( 'shop' ); ?>

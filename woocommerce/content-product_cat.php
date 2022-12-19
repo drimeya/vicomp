@@ -24,6 +24,7 @@ $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
 $image = wp_get_attachment_url( $thumbnail_id );
 $sub_count = 4;
 ?>
+
 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
 	<div class="categories__item">
 		<?if ( $image ) :?>

@@ -10,6 +10,7 @@ register_nav_menus(array(
 function set_styles() {
 	wp_enqueue_style('fonts', get_stylesheet_directory_uri() . '/css/fonts.css');
     wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/css/main.css');
+	wp_enqueue_style('seo-img', get_stylesheet_directory_uri() . '/css/seo-text-images.css');
 }
  
 add_action('wp_enqueue_scripts', 'set_styles');
@@ -69,4 +70,18 @@ function get_products_from_category_by_ID( $category ) {
 
     ) );
     return $products->posts;
+}
+// удаляем описание категории на странице категорий
+remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+add_action( 'woocommerce_after_shop_loop', 'woocommerce_taxonomy_archive_description', 100 );
+
+remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_result_count', 20 );
+
+add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template( $template, $class ){
+ return '
+ <nav class="%1$s" role="navigation">
+  <div class="nav-links">%3$s</div>
+ </nav>    
+ ';
 }

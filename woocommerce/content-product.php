@@ -20,27 +20,11 @@ defined('ABSPATH') || exit;
 
 global $product;
 
-//woocommerce_before_shop_loop_item
-remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
-
-//woocommerce_after_shop_loop_item
-remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
-
-//woocommerce_after_shop_loop_item_title
-remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
-
-add_action('woocommerce_after_shop_loop_item_title_loop_price', 'woocommerce_template_loop_price', 10);
-add_action('woocommerce_after_shop_loop_item_title_loop_rating', 'woocommerce_template_loop_rating', 5);
-
-//woocommerce_before_shop_loop_item_title
-remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
-remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
-
 // Ensure visibility.
 if (empty($product) || !$product->is_visible()) {
     return;
 }
+
 ?>
 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
     <a href="<?php the_permalink(); ?>" class="catalog__item category-page__item">
